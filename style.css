@@ -1,0 +1,24 @@
+body {
+    background-color: black;
+    color:azure;
+}
+
+.header {
+    display: flex;
+    border-bottom: solid 0.5px white;
+}
+
+.header--menu ul {
+    display: flex;
+    list-style: none;
+}
+
+.content--exercise {
+    width: 300px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.content * {
+    margin-top: 30px;
+}
