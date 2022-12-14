@@ -16,30 +16,90 @@
             </div>
             <div class="header--menu">
                 <ul>
-                    <li>Умножение на 2</li>
-                    <!-- <li>Деление на 2</li>
-                    <li>Умножение на 3</li>
-                    <li>Деление на 3</li> -->
+                    <li class="btn__on" id="1" onclick="runExercise(this.id);">Умножение на 2</li>
+                    <li id="2" onclick="runExercise(this.id);">Деление на 2</li>
+                    <li id="3" onclick="runExercise(this.id);">Умножение на 3</li>
+                    <li id="4" onclick="runExercise(this.id);">Деление на 3</li>
                 </ul>
 
             </div>
 
         </div>
         <div class="content">
-            <div class="content--header">
-                <h2>Упражнение "Умножение на 2"</h2>
+            <!-- 01 -->
+            <div class="content-box" id="box-1">
+                <div class="content--header">
+                    <h2>Упражнение "Умножение на 2"</h2>
+                </div>
+                <div class="content--exercise">
+                    <div class="element" id="1-1">2</div>
+                    <div class="element">x</div>
+                    <div class="element" id="2-1">2</div>
+                    <div class="element">=</div>
+                    <div class="element" id="res-1">?</div>
+                </div>
+                <div class="content--controle">
+                    <label for="answer">ТВОЙ ОТВЕТ: </label><input id="answer-1" type="text" autofocus>
+                </div>
+                <div class="content--msg" id="msg-1"></div>
             </div>
-            <div class="content--exercise">
-                <div class="element" id="1-01">2</div>
-                <div class="element">x</div>
-                <div class="element" id="2-01">2</div>
-                <div class="element">=</div>
-                <div class="element" id="1-res">?</div>
+
+
+            <!-- 02 -->
+            <div class="content-box content-box__hide" id="box-2">
+                <div class="content--header">
+                    <h2>Упражнение "Деление на 2"</h2>
+                </div>
+                <div class="content--exercise">
+                    <div class="element" id="1-2">2</div>
+                    <div class="element">:</div>
+                    <div class="element" id="2-2">2</div>
+                    <div class="element">=</div>
+                    <div class="element" id="res-2">?</div>
+                </div>
+                <div class="content--controle">
+                    <label for="answer">ТВОЙ ОТВЕТ: </label><input id="answer-2" type="text">
+                </div>
+                <div class="content--msg" id="msg-2"></div>
             </div>
-            <div class="content--controle">
-                <label for="answer">ТВОЙ ОТВЕТ: </label><input id="answer-01" type="text">
+
+
+            <!-- 03 -->
+            <div class="content-box content-box__hide" id="box-3">
+                <div class="content--header">
+                    <h2>Упражнение "Умножение на 3"</h2>
+                </div>
+                <div class="content--exercise">
+                    <div class="element" id="1-3">2</div>
+                    <div class="element">x</div>
+                    <div class="element" id="2-3">3</div>
+                    <div class="element">=</div>
+                    <div class="element" id="res-3">?</div>
+                </div>
+                <div class="content--controle">
+                    <label for="answer">ТВОЙ ОТВЕТ: </label><input id="answer-3" type="text">
+                </div>
+                <div class="content--msg" id="msg-3"></div>
             </div>
-            <div class="content--msg" id="msg-01"></div>
+
+
+            <!-- 04 -->
+            <div class="content-box content-box__hide" id="box-4">
+                <div class="content--header">
+                    <h2>Упражнение "Деление на 3"</h2>
+                </div>
+                <div class="content--exercise">
+                    <div class="element" id="1-4">2</div>
+                    <div class="element">:</div>
+                    <div class="element" id="2-4">3</div>
+                    <div class="element">=</div>
+                    <div class="element" id="res-4">?</div>
+                </div>
+                <div class="content--controle">
+                    <label for="answer">ТВОЙ ОТВЕТ: </label><input id="answer-4" type="text">
+                </div>
+                <div class="content--msg" id="msg-4"></div>
+            </div>
         </div>
 
 
