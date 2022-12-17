@@ -57,3 +57,18 @@ body {
     font-size: 40px;
     width: 70px;
 }
+
+.input-waiting {
+    background-color: white;
+    transition: 0.3s;
+}
+
+.input-wrong {
+    background-color: red;
+    transition: 0.001s;
+}
+
+.input-right {
+    background-color: green;
+    transition: 0.001s;
+}
