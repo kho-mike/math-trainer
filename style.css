@@ -72,3 +72,11 @@ body {
     background-color: green;
     transition: 0.001s;
 }
+
+.msg-wrong {
+    color: red;
+}
+
+.msg-right {
+    color: green;
+}

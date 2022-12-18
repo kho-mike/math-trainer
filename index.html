@@ -26,77 +26,25 @@
 
         </div>
         <div class="content">
-            <!-- 01 -->
-            <div class="content-box" id="box-1">
-                <div class="content--header">
+
+            <div class="content-box" id="box">
+                <div class="content--header" id="content-header">
                     <h2>Упражнение "Умножение на 2"</h2>
                 </div>
                 <div class="progress-bar">
-                    <progress id="progress-bar"></progress>
+                    <progress id="progress"></progress>
                 </div>
                 <div class="content--exercise">
-                    <div class="element" id="1-1">2</div>
-                    <div class="element">x</div>
-                    <div class="element" id="2-1">2</div>
+                    <div class="element" id="firstOperand"></div>
+                    <div class="element" id="operator"></div>
+                    <div class="element" id="secondOperand"></div>
                     <div class="element">=</div>
-                    <input class="input-waiting" id="answer-1" type="text" autofocus onchange="giveAnswer(this.value)">
+                    <input class="input-waiting" id="answer" type="text" autofocus onchange="giveAnswer(this.value)">
                 </div>
-                <div class="content--msg" id="msg-1"></div>
+                <div class="content--msg" id="msg"></div>
             </div>
-
-            <!-- 02 -->
-            <div class="content-box" id="box-2">
-                <div class="content--header">
-                    <h2>Упражнение "Деление на 2"</h2>
-                </div>
-                <div class="content--exercise">
-                    <div class="element" id="1-2">2</div>
-                    <div class="element">:</div>
-                    <div class="element" id="2-2">2</div>
-                    <div class="element">=</div>
-                    <input class="input-waiting" id="answer-2" type="text" autofocus onchange="giveAnswer(this.value)">
-                </div>
-                <div class="content--msg" id="msg-2"></div>
-            </div>
-
-            <!-- 03 -->
-            <div class="content-box" id="box-3">
-                <div class="content--header">
-                    <h2>Упражнение "Умножение на 3"</h2>
-                </div>
-                <div class="content--exercise">
-                    <div class="element" id="1-3">2</div>
-                    <div class="element">x</div>
-                    <div class="element" id="2-3">2</div>
-                    <div class="element">=</div>
-                    <input class="input-waiting" id="answer-3" type="text" autofocus onchange="giveAnswer(this.value)">
-                </div>
-                <div class="content--msg" id="msg-3"></div>
-            </div>
-
-            <!-- 04 -->
-            <div class="content-box" id="box-4">
-                <div class="content--header">
-                    <h2>Упражнение "Деление на 3"</h2>
-                </div>
-                <div class="content--exercise">
-                    <div class="element" id="1-4">2</div>
-                    <div class="element">:</div>
-                    <div class="element" id="2-4">2</div>
-                    <div class="element">=</div>
-                    <input class="input-waiting" id="answer-4" type="text" autofocus onchange="giveAnswer(this.value)">
-                </div>
-                <div class="content--msg" id="msg-4"></div>
-            </div>
-
-
-
-
-
  
         </div>
-
-
 
     </div>
     

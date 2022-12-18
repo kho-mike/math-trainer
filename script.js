@@ -1,5 +1,8 @@
 var answeres = {
     1: {
+        name: "Умножение на 2",
+        operator: "&#183",
+        operand: 2,
         start: 2,
         2: 4,
         3: 6,
@@ -14,6 +17,9 @@ var answeres = {
     },
 
     2: {
+        name: "Деление на 2",
+        operator: ":",
+        operand: 2,
         start: 4,
         4: 2,
         6: 3,
@@ -28,6 +34,9 @@ var answeres = {
     },
 
     3: {
+        name: "Умножение на 3",
+        operator: "&#183",
+        operand: 3,
         start: 3,
         2: 6,
         3: 9,
@@ -42,6 +51,9 @@ var answeres = {
     },
 
     4: {
+        name: "Деление на 3",
+        operator: ":",
+        operand: 3,
         start: 6,
         6: 2,
         9: 3,
@@ -63,9 +75,14 @@ class Exercise {
 
         thisID *= 1;
 
-        this.boxes = document.getElementsByClassName('content-box');
+        this.header = document.getElementById('content-header');
         this.buttons = document.getElementsByTagName('li');
-        this.inputs = document.getElementsByTagName('input');
+        this.firstOperand = document.getElementById('firstOperand');
+        this.secondOperand = document.getElementById('secondOperand');
+        this.operator = document.getElementById('operator');
+        this.input = document.getElementById('answer');
+        this.msg = document.getElementById('msg');
+        this.progress = document.getElementById('progress');
 
         this.currentValue = 2;
 
@@ -80,17 +97,15 @@ class Exercise {
 
         this.number = thisID;
         this.currentValue = answeres[thisID].start;
-        document.getElementById(`1-${thisID}`).innerHTML = this.currentValue;
+        this.firstOperand.innerHTML = this.currentValue;
+        this.secondOperand.innerHTML = answeres[thisID].operand;
+        this.header.innerHTML = '<h2>' + answeres[thisID].name + '</h2>';
+        this.operator.innerHTML = answeres[thisID].operator;
+        this.msgClear();
+
         this.score = 0;
         this.step = 1;
 
-        for( let element of this.boxes ){
-            if( element.id == `box-${thisID}` ){
-                element.classList.remove('content-box__hide');
-            } else {
-                element.classList.add('content-box__hide');
-            };
-        };
     
         for( let button of this.buttons ){
             if(button.id == thisID){
@@ -100,16 +115,11 @@ class Exercise {
             }
         }
     
-        for( let input of this.inputs){
-            if(input.id == `answer-${thisID}`){
-                input.focus();
-            } else {
-                input.removeAttribute("autofocus");
-            };
-        }
+        this.input.focus();
+       
 
-        document.getElementById('progress-bar').max = '';
-        document.getElementById('progress-bar').value = '';
+        this.progress.max = '';
+        this.progress.value = '';
 
     }
 
@@ -134,7 +144,6 @@ class Exercise {
                 }
                 break;
                 
-                break;
 
             case 3:
                 if(this.score < 8){
@@ -144,7 +153,6 @@ class Exercise {
                 }
                 break;
                 
-                break;
 
             case 4:
                 if(this.score < 8){
@@ -153,8 +161,7 @@ class Exercise {
                     nextValue = this.randomValue();
                 }
                 break;
-                
-                break;
+        
         }
         this.currentValue = nextValue;
     }
@@ -167,42 +174,57 @@ class Exercise {
         } while (randomValue == exercise.currentValue);
         return randomValue;
     }
+
+
+    msgClear(){
+
+        this.msg.innerHTML = "";
+        this.msg.classList.value = "";
+
+    }
+
+    msgShow( type, text ){
+        //
+        if("wrong" == type) this.msg.classList.add('msg-wrong');
+        if("right" == type) this.msg.classList.add('msg-right');
+
+        this.msg.innerHTML = text;
+    }
         
 }
 
 var exercise = new Exercise(1);
 
 function giveAnswer(answer){
-    document.getElementById(`msg-${exercise.number}`).innerHTML = "";
 
+    exercise.msgClear();
 
     if( answer == answeres[exercise.number][exercise.currentValue] ){
-        console.log('good');
+
         exercise.setCurrentValue();
         exercise.step++;
         exercise.score++;
-        document.getElementById(`1-${exercise.number}`).innerHTML = exercise.currentValue;
+        exercise.firstOperand.innerHTML = exercise.currentValue;
 
-        document.getElementById(`answer-${exercise.number}`).classList.add('input-right');
+        exercise.input.classList.add('input-right');
         setTimeout( () => {
             //
-            document.getElementById(`answer-${exercise.number}`).classList.remove('input-right');
+            exercise.input.classList.remove('input-right');
         } , 1000)
     } else {
-        console.log('bad');
-        document.getElementById(`msg-${exercise.number}`).innerHTML = "попробуй еще раз";
-        document.getElementById(`answer-${exercise.number}`).classList.add('input-wrong');
+
+        exercise.msgShow( "wrong", "Попробуй еще разочек..." )
+        exercise.input.classList.add('input-wrong');
         setTimeout( () => {
             //
-            document.getElementById(`answer-${exercise.number}`).classList.remove('input-wrong');
+            exercise.input.classList.remove('input-wrong');
         } , 1000)
     }
-    document.getElementById(`answer-${exercise.number}`).value = '';
+    exercise.input.value = '';
 
-    document.getElementById('progress-bar').max = 20;
-    document.getElementById('progress-bar').value = exercise.score;
+    exercise.progress.max = 20;
+    exercise.progress.value = exercise.score;
 
-
-    console.log(exercise.score);
+    if(exercise.score >= 20) exercise.msgShow("right", "Молодец! Все примеры решены верно!");
 
 }
