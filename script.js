@@ -129,7 +129,7 @@ class Exercise {
 
         switch (this.number) {
             case 1:
-                if(this.score < 8){
+                if(this.score < 9){
                     nextValue++;
                 } else {
                     nextValue = this.randomValue();
@@ -137,7 +137,7 @@ class Exercise {
                 break;
 
             case 2:
-                if(this.score < 8){
+                if(this.score < 9){
                     nextValue += 2;
                 } else {
                     nextValue = this.randomValue();
@@ -201,9 +201,11 @@ function giveAnswer(answer){
 
     if( answer == answeres[exercise.number][exercise.currentValue] ){
 
-        exercise.setCurrentValue();
+        
         exercise.step++;
         exercise.score++;
+        exercise.setCurrentValue();
+
         exercise.firstOperand.innerHTML = exercise.currentValue;
 
         exercise.input.classList.add('input-right');
@@ -224,6 +226,9 @@ function giveAnswer(answer){
 
     exercise.progress.max = 20;
     exercise.progress.value = exercise.score;
+
+    console.log(exercise.score);
+    console.log(exercise.number);
 
     if(exercise.score >= 20) exercise.msgShow("right", "Молодец! Все примеры решены верно!");
 
