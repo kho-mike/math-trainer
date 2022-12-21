@@ -65,6 +65,42 @@ var answeres = {
         27: 9,
         30: 10,
         all: [6, 9, 12, 15, 18, 21, 24, 27, 30]
+    },
+
+    // Умножение на 4
+    5: {
+        name: "Умножение на 4",
+        operator: "&#183",
+        operand: 4,
+        start: 2,
+        2: 8,
+        3: 12,
+        4: 16,
+        5: 20,
+        6: 24,
+        7: 28,
+        8: 32,
+        9: 36,
+        10: 40,
+        all: [2, 3, 4, 5, 6, 7, 8, 9, 10]
+    },
+
+    // Деление на 4
+    6: {
+        name: "Деление на 4",
+        operator: ":",
+        operand: 4,
+        start: 8,
+        8: 2,
+        12: 4,
+        16: 6,
+        20: 5,
+        24: 6,
+        28: 7,
+        32: 8,
+        36: 9,
+        40: 10,
+        all: [8, 12, 16, 20, 24, 28, 32, 36, 40]
     }
 }
 
@@ -157,6 +193,22 @@ class Exercise {
             case 4:
                 if(this.score < 8){
                     nextValue += 3;
+                } else {
+                    nextValue = this.randomValue();
+                }
+                break;
+
+            case 5:
+                if(this.score < 9){
+                    nextValue++;
+                } else {
+                    nextValue = this.randomValue();
+                }
+                break;
+
+            case 6:
+                if(this.score < 9){
+                    nextValue += 4;
                 } else {
                     nextValue = this.randomValue();
                 }
