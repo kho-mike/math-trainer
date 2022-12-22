@@ -37,7 +37,7 @@ var answeres = {
         name: "Умножение на 3",
         operator: "&#183",
         operand: 3,
-        start: 3,
+        start: 2,
         2: 6,
         3: 9,
         4: 12,
@@ -92,8 +92,8 @@ var answeres = {
         operand: 4,
         start: 8,
         8: 2,
-        12: 4,
-        16: 6,
+        12: 3,
+        16: 4,
         20: 5,
         24: 6,
         28: 7,
@@ -182,7 +182,7 @@ class Exercise {
                 
 
             case 3:
-                if(this.score < 8){
+                if(this.score < 9){
                     nextValue++;
                 } else {
                     nextValue = this.randomValue();
@@ -191,7 +191,7 @@ class Exercise {
                 
 
             case 4:
-                if(this.score < 8){
+                if(this.score < 9){
                     nextValue += 3;
                 } else {
                     nextValue = this.randomValue();
