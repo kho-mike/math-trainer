@@ -101,6 +101,24 @@ var answeres = {
         36: 9,
         40: 10,
         all: [8, 12, 16, 20, 24, 28, 32, 36, 40]
+    },
+
+    // Состав числа 10
+    50: {
+        name: "Состав числа 10",
+        operator: "и",
+        operand: 4,
+        start: 1,
+        1: 9,
+        2: 8,
+        3: 7,
+        4: 6,
+        5: 5,
+        6: 4,
+        7: 3,
+        8: 2,
+        9: 1,
+        all: [1, 2, 3, 4, 5, 6, 7, 8, 9],
     }
 }
 
@@ -111,14 +129,8 @@ class Exercise {
 
         thisID *= 1;
 
-        this.header = document.getElementById('content-header');
+
         this.buttons = document.getElementsByTagName('li');
-        this.firstOperand = document.getElementById('firstOperand');
-        this.secondOperand = document.getElementById('secondOperand');
-        this.operator = document.getElementById('operator');
-        this.input = document.getElementById('answer');
-        this.msg = document.getElementById('msg');
-        this.progress = document.getElementById('progress');
 
         this.currentValue = 2;
 
@@ -130,19 +142,11 @@ class Exercise {
     startExercise( thisID ){
 
         thisID *= 1;
-
         this.number = thisID;
-        this.currentValue = answeres[thisID].start;
-        this.firstOperand.innerHTML = this.currentValue;
-        this.secondOperand.innerHTML = answeres[thisID].operand;
-        this.header.innerHTML = '<h2>' + answeres[thisID].name + '</h2>';
-        this.operator.innerHTML = answeres[thisID].operator;
-        this.msgClear();
+        this.maxScore = 20;
 
-        this.score = 0;
-        this.step = 1;
+        this.createBox( thisID );
 
-    
         for( let button of this.buttons ){
             if(button.id == thisID){
                 button.classList.add('btn__on');
@@ -150,12 +154,73 @@ class Exercise {
                 button.classList.remove('btn__on');
             }
         }
+        
+        this.currentValue = answeres[thisID].start; 
+       
+        this.msgClear();
+
+        this.score = 0;
+        this.step = 1;
+
     
         this.input.focus();
-       
 
-        this.progress.max = '';
-        this.progress.value = '';
+    }
+
+    createBox( ID ){
+
+        let box = document.getElementById('box');
+        box.innerHTML = "";
+
+        let header = document.createElement('div');
+        header.classList.add("content--header");
+        header.id = "content-header";
+        header.innerHTML = "<h2>" + answeres[ID].name + "</h2>";
+
+        this.header = header;
+
+        let progress = document.createElement('div');
+        progress.classList.add("progress-bar");
+        progress.innerHTML = '<progress id="progress"' + this.maxScore + '></progress>';
+
+        let exercise = document.createElement('div');
+        exercise.classList.add('content--exercise');
+        if(this.number < 50){
+            exercise.innerHTML = '<div class="element" id="firstOperand">' + answeres[ID].start + '</div>' + 
+                                '<div class="element" id="operator">' + answeres[ID].operator + '</div>' +
+                                '<div class="element" id="secondOperand">' + answeres[ID].operand + '</div>' +
+                                '<div class="element">=</div>' +
+                                '<input class="input-waiting" id="answer" type="text" autofocus onchange="exercise.giveAnswer(this.value)">';
+        };
+
+        if(this.number >= 50){
+            exercise.innerHTML = '<div class="element" id="firstOperand">' + answeres[ID].start + '</div>' + 
+                                '<div class="element" id="operator">' + answeres[ID].operator + '</div>' +
+                                '<input class="input-waiting" id="answer" type="text" autofocus onchange="exercise.giveAnswer(this.value)">';
+        };
+        
+
+        let msg = document.createElement('div');
+        msg.classList.add('content--msg');
+        msg.id = 'msg';
+        
+
+        box.appendChild(header);
+        box.appendChild(progress);
+        box.appendChild(exercise);
+        box.appendChild(msg);
+
+
+        this.header = document.getElementById('content-header');
+        this.firstOperand = document.getElementById('firstOperand');
+        this.secondOperand = document.getElementById('secondOperand');
+        this.operator = document.getElementById('operator');
+        this.input = document.getElementById('answer');
+        this.msg = document.getElementById('msg');
+        this.progress = document.getElementById('progress');
+
+
+
 
     }
 
@@ -213,6 +278,14 @@ class Exercise {
                     nextValue = this.randomValue();
                 }
                 break;
+
+            case 50:
+                if(this.score < 9){
+                    nextValue ++;
+                } else {
+                    nextValue = this.randomValue();
+                }
+                break;
         
         }
         this.currentValue = nextValue;
@@ -242,46 +315,39 @@ class Exercise {
 
         this.msg.innerHTML = text;
     }
+
+    giveAnswer( answer ){
+        this.msgClear();
+
+        if ( answer == answeres[this.number][this.currentValue] ) {
+            this.step++;
+            this.score++;
+            this.setCurrentValue();
+
+            this.firstOperand.innerHTML = exercise.currentValue;
+
+            this.input.classList.add('input-right');
+            setTimeout( () => {
+                //
+                this.input.classList.remove('input-right');
+            } , 1000)
+        } else {
+            this.msgShow( "wrong", "Попробуй еще разочек..." )
+            this.input.classList.add('input-wrong');
+            setTimeout( () => {
+                //
+                this.input.classList.remove('input-wrong');
+            } , 1000)
+        }
+
+        this.input.value = '';
+
+        this.progress.max = 20;
+        this.progress.value = exercise.score;
+
+        if(this.score >= 20) this.msgShow("right", "Молодец! Все примеры решены верно!");
+        }
         
 }
 
 var exercise = new Exercise(1);
-
-function giveAnswer(answer){
-
-    exercise.msgClear();
-
-    if( answer == answeres[exercise.number][exercise.currentValue] ){
-
-        
-        exercise.step++;
-        exercise.score++;
-        exercise.setCurrentValue();
-
-        exercise.firstOperand.innerHTML = exercise.currentValue;
-
-        exercise.input.classList.add('input-right');
-        setTimeout( () => {
-            //
-            exercise.input.classList.remove('input-right');
-        } , 1000)
-    } else {
-
-        exercise.msgShow( "wrong", "Попробуй еще разочек..." )
-        exercise.input.classList.add('input-wrong');
-        setTimeout( () => {
-            //
-            exercise.input.classList.remove('input-wrong');
-        } , 1000)
-    }
-    exercise.input.value = '';
-
-    exercise.progress.max = 20;
-    exercise.progress.value = exercise.score;
-
-    console.log(exercise.score);
-    console.log(exercise.number);
-
-    if(exercise.score >= 20) exercise.msgShow("right", "Молодец! Все примеры решены верно!");
-
-}
