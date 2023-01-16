@@ -16,12 +16,13 @@
             </div>
             <div class="header--menu">
                 <ul>
-                    <li class="btn__on" id="1" onclick="exercise.startExercise(this.id);">Умножение на 2</li>
+                    <li class="btn__on"  id="1" onclick="exercise.startExercise(this.id);">Умножение на 2</li>
                     <li id="2" onclick="exercise.startExercise(this.id);">Деление на 2</li>
                     <li id="3" onclick="exercise.startExercise(this.id);">Умножение на 3</li>
                     <li id="4" onclick="exercise.startExercise(this.id);">Деление на 3</li>
                     <li id="5" onclick="exercise.startExercise(this.id);">Умножение на 4</li>
                     <li id="6" onclick="exercise.startExercise(this.id);">Деление на 4</li>
+                    <li id="50" onclick="exercise.startExercise(this.id);">Состав числа 10</li>
                 </ul>
 
             </div>
@@ -30,7 +31,7 @@
         <div class="content">
 
             <div class="content-box" id="box">
-                <div class="content--header" id="content-header">
+                <!-- <div class="content--header" id="content-header">
                     <h2>Упражнение "Умножение на 2"</h2>
                 </div>
                 <div class="progress-bar">
@@ -43,8 +44,23 @@
                     <div class="element">=</div>
                     <input class="input-waiting" id="answer" type="text" autofocus onchange="giveAnswer(this.value)">
                 </div>
-                <div class="content--msg" id="msg"></div>
+                <div class="content--msg" id="msg"></div> -->
             </div>
+
+            <!-- <div class="content-box" id="box-second-type">
+                <div class="content--header" id="content-header">
+                    <h2>Состав числа 10</h2>
+                </div>
+                <div class="progress-bar">
+                    <progress id="progress"></progress>
+                </div>
+                <div class="content--exercise">
+                    <div class="element" id="firstOperand"></div>
+                    <div class="element" id="operator"></div>
+                    <input class="input-waiting" id="answer" type="text" autofocus onchange="giveAnswer(this.value)">
+                </div>
+                <div class="content--msg" id="msg"></div>
+            </div> -->
  
         </div>
 
