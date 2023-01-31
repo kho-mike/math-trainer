@@ -82,7 +82,7 @@ var answeres = {
         8: 32,
         9: 36,
         10: 40,
-        all: [2, 3, 4, 5, 6, 7, 8, 9, 10]
+        all: [2, 3, 4, 5, 6, 7, 8, 9, 10],
     },
 
     // Деление на 4
@@ -101,6 +101,42 @@ var answeres = {
         36: 9,
         40: 10,
         all: [8, 12, 16, 20, 24, 28, 32, 36, 40]
+    },
+
+    // Умножение на 5
+    7: {
+        name: "Умножение на 5",
+        operator: "&#183",
+        operand: "5",
+        start: 2,
+        2: 10,
+        3: 15,
+        4: 20,
+        5: 25,
+        6: 30,
+        7: 35,
+        8: 40,
+        9: 45,
+        10: 50,
+        all: [2, 3, 4, 5, 6, 7, 8, 9, 10],
+    },
+
+    // Деление на 5
+    8: {
+        name: "Деление на 5",
+        operator: ":",
+        operand: 5,
+        start: 10,
+        10: 2,
+        15: 3,
+        20: 4,
+        25: 5,
+        30: 6,
+        35: 7,
+        40: 8,
+        45: 9,
+        50: 10,
+        all: [10, 15, 20, 25, 30, 35, 40, 45, 50],
     },
 
     // Состав числа 10
@@ -274,6 +310,22 @@ class Exercise {
             case 6:
                 if(this.score < 9){
                     nextValue += 4;
+                } else {
+                    nextValue = this.randomValue();
+                }
+                break;
+
+            case 7:
+                if(this.score < 9){
+                    nextValue++;
+                } else {
+                    nextValue = this.randomValue();
+                }
+                break;
+
+            case 8:
+                if(this.score < 9){
+                    nextValue += 5;
                 } else {
                     nextValue = this.randomValue();
                 }
