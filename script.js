@@ -139,6 +139,150 @@ var answeres = {
         all: [10, 15, 20, 25, 30, 35, 40, 45, 50],
     },
 
+    // Умножение на 6
+    9: {
+        name: "Умножение на 6",
+        operator: "&#183",
+        operand: "6",
+        start: 2,
+        2: 12,
+        3: 18,
+        4: 24,
+        5: 30,
+        6: 36,
+        7: 42,
+        8: 48,
+        9: 54,
+        10: 60,
+        all: [2, 3, 4, 5, 6, 7, 8, 9, 10],
+    },
+
+    // Деление на 6
+    10: {
+        name: "Деление на 6",
+        operator: ":",
+        operand: 6,
+        start: 12,
+        12: 2,
+        18: 3,
+        24: 4,
+        30: 5,
+        36: 6,
+        42: 7,
+        48: 8,
+        54: 9,
+        60: 10,
+        all: [12, 18, 24, 30, 36, 42, 48, 54, 60],
+    },
+
+    // Умножение на 7
+    11: {
+        name: "Умножение на 7",
+        operator: "&#183",
+        operand: "7",
+        start: 2,
+        2: 14,
+        3: 21,
+        4: 28,
+        5: 35,
+        6: 42,
+        7: 49,
+        8: 56,
+        9: 63,
+        10: 70,
+        all: [2, 3, 4, 5, 6, 7, 8, 9, 10],
+    },
+
+    // Деление на 7
+    12: {
+        name: "Деление на 7",
+        operator: ":",
+        operand: 7,
+        start: 14,
+        14: 2,
+        21: 3,
+        28: 4,
+        35: 5,
+        42: 6,
+        49: 7,
+        56: 8,
+        63: 9,
+        70: 10,
+        all: [14, 21, 28, 35, 42, 49, 56, 63, 70],
+    },
+
+    // Умножение на 8
+    13: {
+        name: "Умножение на 8",
+        operator: "&#183",
+        operand: "8",
+        start: 2,
+        2: 16,
+        3: 24,
+        4: 32,
+        5: 40,
+        6: 48,
+        7: 56,
+        8: 64,
+        9: 72,
+        10: 80,
+        all: [2, 3, 4, 5, 6, 7, 8, 9, 10],
+    },
+
+    // Деление на 8
+    14: {
+        name: "Деление на 8",
+        operator: ":",
+        operand: 8,
+        start: 16,
+        16: 2,
+        24: 3,
+        32: 4,
+        40: 5,
+        48: 6,
+        56: 7,
+        64: 8,
+        72: 9,
+        80: 10,
+        all: [16, 24, 32, 40, 48, 56, 64, 72, 80],
+    },
+
+    // Умножение на 9
+    15: {
+        name: "Умножение на 9",
+        operator: "&#183",
+        operand: "9",
+        start: 2,
+        2: 18,
+        3: 27,
+        4: 36,
+        5: 45,
+        6: 54,
+        7: 63,
+        8: 72,
+        9: 81,
+        10: 90,
+        all: [2, 3, 4, 5, 6, 7, 8, 9, 10],
+    },
+
+    // Деление на 9
+    16: {
+        name: "Деление на 9",
+        operator: ":",
+        operand: 9,
+        start: 18,
+        18: 2,
+        27: 3,
+        36: 4,
+        45: 5,
+        54: 6,
+        63: 7,
+        72: 8,
+        81: 9,
+        90: 10,
+        all: [18, 27, 36, 45, 54, 63, 72, 81, 90],
+    },
+
     // Состав числа 10
     50: {
         name: "Состав числа 10",
@@ -326,6 +470,70 @@ class Exercise {
             case 8:
                 if(this.score < 9){
                     nextValue += 5;
+                } else {
+                    nextValue = this.randomValue();
+                }
+                break;
+
+            case 9:
+                if(this.score < 9){
+                    nextValue++;
+                } else {
+                    nextValue = this.randomValue();
+                }
+                break;
+    
+            case 10:
+                if(this.score < 9){
+                    nextValue += 6;
+                } else {
+                    nextValue = this.randomValue();
+                }
+                break;
+
+            case 11:
+                if(this.score < 9){
+                    nextValue++;
+                } else {
+                    nextValue = this.randomValue();
+                }
+                break;
+        
+            case 12:
+                if(this.score < 9){
+                    nextValue += 7;
+                } else {
+                    nextValue = this.randomValue();
+                }
+                break;
+
+            case 13:
+                if(this.score < 9){
+                    nextValue++;
+                } else {
+                    nextValue = this.randomValue();
+                }
+                break;
+            
+            case 14:
+                if(this.score < 9){
+                    nextValue += 8;
+                } else {
+                    nextValue = this.randomValue();
+                }
+                break;
+
+            case 15:
+                if(this.score < 9){
+                    nextValue++;
+                } else {
+                    nextValue = this.randomValue();
+                }
+                break;
+                
+            case 16:
+                if(this.score < 9){
+                    nextValue += 9;
                 } else {
                     nextValue = this.randomValue();
                 }
