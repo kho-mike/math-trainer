@@ -1,309 +1,264 @@
-var answeres = {
-    1: {
-        name: "Умножение на 2",
-        operator: "&#183",
-        operand: 2,
-        start: 2,
-        2: 4,
-        3: 6,
-        4: 8,
-        5: 10,
-        6: 12,
-        7: 14,
-        8: 16,
-        9: 18,
-        10: 20,
-        all: [2, 3, 4, 5, 6, 7, 8, 9, 10]
+const app = {
+    // приложение по проверке результата
+
+    exercises: {
+        multiplication: [2, 3, 4, 5, 6, 7, 8, 9],
+        multiplication_2:  [ [2, 4], [3, 6], [4, 8], [5, 10], [6, 12], [7, 14], [8, 16], [9, 18] ],
+        multiplication_3:  [ [2, 6], [3, 9], [4, 12], [5, 15], [6, 18], [7, 21], [8, 24], [9, 27] ],
+        multiplication_4:  [ [2, 8], [3, 12], [4, 16], [5, 20], [6, 24], [7, 28], [8, 32], [9, 36] ],
+        multiplication_5:  [ [2, 10], [3, 15], [4, 20], [5, 25], [6, 30], [7, 35], [8, 40], [9, 45] ],
+        multiplication_6:  [ [2, 12], [3, 18], [4, 24], [5, 30], [6, 36], [7, 42], [8, 48], [9, 54] ],
+        multiplication_7:  [ [2, 14], [3, 21], [4, 28], [5, 35], [6, 42], [7, 49], [8, 56], [9, 63] ],
+        multiplication_8:  [ [2, 16], [3, 24], [4, 32], [5, 40], [6, 48], [7, 56], [8, 64], [9, 72] ],
+        multiplication_9:  [ [2, 18], [3, 27], [4, 36], [5, 45], [6, 54], [7, 63], [8, 72], [9, 81] ],
+
+        division: [2, 3, 4, 5, 6, 7, 8, 9],
+        division_2:  [ [4, 2], [6, 3], [8, 4], [10, 5], [12, 6], [14, 7], [16, 8], [18, 9] ],
+        division_3:  [ [6, 2], [9, 3], [12, 4], [15, 5], [18, 6], [21, 7], [24, 8], [27, 9] ],
+        division_4:  [ [8, 2], [12, 3], [16, 4], [20, 5], [24, 6], [28, 7], [32, 8], [36, 9] ],
+        division_5:  [ [10, 2], [15, 3], [20, 4], [25, 5], [30, 6], [35, 7], [40, 8], [45, 9] ],
+        division_6:  [ [12, 2], [18, 3], [24, 4], [30, 5], [36, 6], [42, 7], [48, 8], [54, 9] ],
+        division_7:  [ [14, 2], [21, 3], [28, 4], [35, 5], [42, 6], [49, 7], [56, 8], [63, 9] ],
+        division_8:  [ [16, 2], [24, 3], [32, 4], [40, 5], [48, 6], [56, 7], [64, 8], [72, 9] ],
+        division_9:  [ [18, 2], [27, 3], [36, 4], [45, 5], [54, 6], [63, 7], [72, 8], [81, 9] ],
+
+        composition: [6, 7, 8, 9, 10],
+        composition_6:  [ [1, 5], [2, 4], [3, 3], [4, 2], [5, 1] ],
+        composition_7:  [ [1, 6], [2, 5], [3, 4], [4, 3], [5, 2], [6, 1] ],
+        composition_8:  [ [1, 7], [2, 6], [3, 5], [4, 4], [5, 3], [6, 2], [7, 1] ],
+        composition_9:  [ [1, 8], [2, 7], [3, 6], [4, 5], [5, 4], [6, 3], [7, 2], [8, 1] ],
+        composition_10:  [ [1, 9], [2, 8], [3, 7], [4, 6], [5, 5], [6, 4], [7, 3], [8, 2], [9, 1] ],
     },
 
-    2: {
-        name: "Деление на 2",
-        operator: ":",
-        operand: 2,
-        start: 4,
-        4: 2,
-        6: 3,
-        8: 4,
-        10: 5,
-        12: 6,
-        14: 7,
-        16: 8,
-        18: 9,
-        20: 10,
-        all: [4, 6, 8, 10, 12, 14, 16, 18, 20]
+    operators: {
+        multiplication: "&#183",
+        division: ":",
+        composition: "и",
     },
 
-    3: {
-        name: "Умножение на 3",
-        operator: "&#183",
-        operand: 3,
-        start: 2,
-        2: 6,
-        3: 9,
-        4: 12,
-        5: 15,
-        6: 18,
-        7: 21,
-        8: 24,
-        9: 27,
-        10: 30,
-        all: [2, 3, 4, 5, 6, 7, 8, 9, 10]
+    chooseOperation( inputOperation ){
+        this.exercise.temp.operation = inputOperation;
+        this.exercise.temp.operator = this.operators[inputOperation];
+        this.exercise.temp.currentStage = "chooseOperand";
+        this.show();
     },
 
-    4: {
-        name: "Деление на 3",
-        operator: ":",
-        operand: 3,
-        start: 6,
-        6: 2,
-        9: 3,
-        12: 4,
-        15: 5,
-        18: 6,
-        21: 7,
-        24: 8,
-        27: 9,
-        30: 10,
-        all: [6, 9, 12, 15, 18, 21, 24, 27, 30]
+    chooseOperand( inputOperand ){
+        this.exercise.temp.operand = inputOperand;
+
+        const exerciseArray = this.exercises[`${this.exercise.temp.operation}_${this.exercise.temp.operand}`];
+
+        for(let elem of exerciseArray){
+            this.exercise.temp.stage1.push(elem);
+        }
+
+        while (this.exercise.temp.stage2.length < exerciseArray.length) {
+
+            let randomIndex = Math.floor( Math.random()*exerciseArray.length);
+
+            if(this.exercise.temp.stage2.indexOf(exerciseArray[randomIndex])>=0){
+                continue;
+            }
+            this.exercise.temp.stage2.push(exerciseArray[randomIndex]);
+
+        }
+
+        this.exercise.temp.currentValue = this.exercise.temp.stage1[0][0];
+        this.exercise.temp.currentResult = this.exercise.temp.stage1[0][1];
+
+        this.exercise.temp.currentStage = "getAnswere";
+        this.show();
     },
 
-    // Умножение на 4
-    5: {
-        name: "Умножение на 4",
-        operator: "&#183",
-        operand: 4,
-        start: 2,
-        2: 8,
-        3: 12,
-        4: 16,
-        5: 20,
-        6: 24,
-        7: 28,
-        8: 32,
-        9: 36,
-        10: 40,
-        all: [2, 3, 4, 5, 6, 7, 8, 9, 10],
+    start(){},
+
+    stop(){},
+
+    getAnswere(inputAnswere){
+        if( !this.check(inputAnswere) ){
+            this.addMessage( 'wrong', 'Ой! Ошибочка' );
+        }
+
+        this.exercise.allAnsweres.push( {input: inputAnswere, current: this.exercise.temp.currentResult,} );
+
+        this.show();
+
     },
 
-    // Деление на 4
-    6: {
-        name: "Деление на 4",
-        operator: ":",
-        operand: 4,
-        start: 8,
-        8: 2,
-        12: 3,
-        16: 4,
-        20: 5,
-        24: 6,
-        28: 7,
-        32: 8,
-        36: 9,
-        40: 10,
-        all: [8, 12, 16, 20, 24, 28, 32, 36, 40]
+    show( currentStage = this.exercise.temp.currentStage ){
+        let app = document.getElementById('app');
+        switch (currentStage) {
+            case "chooseOperation":
+                app.innerHTML = `
+                <div class="app-wrapper">
+                    <div class="menu" id="first">
+                        <div class="menu-item" id="multiplication" onclick="app.chooseOperation(this.id);">Умножение</div>
+                        <div class="menu-item" id="division" onclick="app.chooseOperation(this.id);">Деление</div>
+                        <div class="menu-item" id="composition" onclick="app.chooseOperation(this.id);">Состав числа</div>
+                    </div>
+                </div>
+                `;
+                break;
+
+            case "chooseOperand":
+
+            console.log(this.exercise.temp.operation);
+
+            app.innerHTML = `
+                <div class="app-wrapper">
+                    <div class="menu" id="second">
+                `;
+
+                for(item of this.exercises[this.exercise.temp.operation]){
+                    app.innerHTML += `
+                        <div class="menu-item" id="${item}" onclick="app.chooseOperand(this.id);">${item}</div>
+                    `;
+                };
+
+                app.innerHTML += `
+                    </div>
+                </div>
+                `;
+
+                break;
+
+            case "getAnswere":
+
+                app.innerHTML = `
+                    <div class="app-wrapper">
+                `;
+
+                if(this.exercise.temp.operation == 'composition'){
+                    app.innerHTML += `
+                        <div class="app-wrapper-header">
+                            Упражнение "СОСТАВ ЧИСЛА ${this.exercise.temp.operand}"
+                        </div>
+                        <div class="app-wrapper-content">
+                            <div class="element" id="firstOperand"> ${ this.exercise.temp.operand } </div> 
+                            <div class="element" id="operator">${ this.exercise.temp.operator }</div>
+                            <input class="input-waiting" id="" type="text" autofocus onchange=" app.getAnswere(this.value); ">
+                        </div>
+                    `;
+                } else {
+                    let operationRUS;
+                    if(this.exercise.temp.operation == 'multiplication'){
+                        operationRUS = 'УМНОЖЕНИЕ';
+                    } else if(this.exercise.temp.operation == 'division'){
+                        operationRUS = 'ДЕЛЕНИЕ';
+                    }
+                    app.innerHTML += `
+                        <div class="app-wrapper-header">
+                        Упражнение "${operationRUS} НА ${this.exercise.temp.operand}"
+                        </div>
+                        <div class="app-wrapper-content">
+                            <div class="element" id="firstOperand">${this.exercise.temp.currentValue}</div>
+                            <div class="element" id="operator"> ${this.exercise.temp.operator} </div>
+                            <div class="element" id="secondOperand">${this.exercise.temp.operand}</div>
+                            <div class="element">=</div>
+                            <input class="input-waiting" id="answer" type="text" autofocus onchange="app.getAnswere(this.value)">
+                        </div>
+                    `;
+                }
+
+                app.innerHTML += `
+                    </div>
+                `;
+
+                break;
+        
+            default:
+                break;
+        }
+
+        if(this.exercise.temp.messages.length > 0){
+            this.showMessages();
+        }
+        
+
+        console.table( this.exercise );
     },
 
-    // Умножение на 5
-    7: {
-        name: "Умножение на 5",
-        operator: "&#183",
-        operand: "5",
-        start: 2,
-        2: 10,
-        3: 15,
-        4: 20,
-        5: 25,
-        6: 30,
-        7: 35,
-        8: 40,
-        9: 45,
-        10: 50,
-        all: [2, 3, 4, 5, 6, 7, 8, 9, 10],
+
+    addMessage( inpytType, inputText ){
+        this.exercise.temp.messages.push({type: inpytType, text: inputText});
     },
 
-    // Деление на 5
-    8: {
-        name: "Деление на 5",
-        operator: ":",
-        operand: 5,
-        start: 10,
-        10: 2,
-        15: 3,
-        20: 4,
-        25: 5,
-        30: 6,
-        35: 7,
-        40: 8,
-        45: 9,
-        50: 10,
-        all: [10, 15, 20, 25, 30, 35, 40, 45, 50],
+
+    showMessages(){
+        //
+        let msgBox = document.createElement('div');
+        msgBox.id = 'app-msgBox';
+        for(let msg of this.exercise.temp.messages){
+            msgBox.innerHTML += `
+                <div class="msg-${msg.type}"><p>${msg.text}</p></div>
+            `
+        };
+
+        document.getElementById('app').appendChild(msgBox);
+
     },
 
-    // Умножение на 6
-    9: {
-        name: "Умножение на 6",
-        operator: "&#183",
-        operand: "6",
-        start: 2,
-        2: 12,
-        3: 18,
-        4: 24,
-        5: 30,
-        6: 36,
-        7: 42,
-        8: 48,
-        9: 54,
-        10: 60,
-        all: [2, 3, 4, 5, 6, 7, 8, 9, 10],
+    hideMessages(){
+        document.getElementById('app').removeChild(document.getElementById('app-msgBox'));
     },
 
-    // Деление на 6
-    10: {
-        name: "Деление на 6",
-        operator: ":",
-        operand: 6,
-        start: 12,
-        12: 2,
-        18: 3,
-        24: 4,
-        30: 5,
-        36: 6,
-        42: 7,
-        48: 8,
-        54: 9,
-        60: 10,
-        all: [12, 18, 24, 30, 36, 42, 48, 54, 60],
+    check( inputAnswere ){
+        return inputAnswere == this.exercise.temp.currentResult;
     },
 
-    // Умножение на 7
-    11: {
-        name: "Умножение на 7",
-        operator: "&#183",
-        operand: "7",
-        start: 2,
-        2: 14,
-        3: 21,
-        4: 28,
-        5: 35,
-        6: 42,
-        7: 49,
-        8: 56,
-        9: 63,
-        10: 70,
-        all: [2, 3, 4, 5, 6, 7, 8, 9, 10],
+    next(){
+        if(this.exercise.temp.stage1.length > 0){
+
+        }
     },
 
-    // Деление на 7
-    12: {
-        name: "Деление на 7",
-        operator: ":",
-        operand: 7,
-        start: 14,
-        14: 2,
-        21: 3,
-        28: 4,
-        35: 5,
-        42: 6,
-        49: 7,
-        56: 8,
-        63: 9,
-        70: 10,
-        all: [14, 21, 28, 35, 42, 49, 56, 63, 70],
+    repeat(){
+        //
     },
 
-    // Умножение на 8
-    13: {
-        name: "Умножение на 8",
-        operator: "&#183",
-        operand: "8",
-        start: 2,
-        2: 16,
-        3: 24,
-        4: 32,
-        5: 40,
-        6: 48,
-        7: 56,
-        8: 64,
-        9: 72,
-        10: 80,
-        all: [2, 3, 4, 5, 6, 7, 8, 9, 10],
+    save(){},
+
+    exercise: {
+        timeStart: null,
+        timeStop: null,
+        timeLenght: null,
+        countAnsweres: 0,
+        countRightAnsweres: 0,
+        countWrongAnsweres: 0,
+
+        wrongAnsweres: [],
+        allAnsweres: [],
+
+        operation: null,
+        operand: null,
+        operator: null,
+
+        temp: {
+            currentStage: "chooseOperation",
+            currentValue: null,
+            currentResult: null,
+            stage1: [],
+            stage2: [],
+            messages: [],
+        }
     },
 
-    // Деление на 8
-    14: {
-        name: "Деление на 8",
-        operator: ":",
-        operand: 8,
-        start: 16,
-        16: 2,
-        24: 3,
-        32: 4,
-        40: 5,
-        48: 6,
-        56: 7,
-        64: 8,
-        72: 9,
-        80: 10,
-        all: [16, 24, 32, 40, 48, 56, 64, 72, 80],
-    },
 
-    // Умножение на 9
-    15: {
-        name: "Умножение на 9",
-        operator: "&#183",
-        operand: "9",
-        start: 2,
-        2: 18,
-        3: 27,
-        4: 36,
-        5: 45,
-        6: 54,
-        7: 63,
-        8: 72,
-        9: 81,
-        10: 90,
-        all: [2, 3, 4, 5, 6, 7, 8, 9, 10],
-    },
+}
 
-    // Деление на 9
-    16: {
-        name: "Деление на 9",
-        operator: ":",
-        operand: 9,
-        start: 18,
-        18: 2,
-        27: 3,
-        36: 4,
-        45: 5,
-        54: 6,
-        63: 7,
-        72: 8,
-        81: 9,
-        90: 10,
-        all: [18, 27, 36, 45, 54, 63, 72, 81, 90],
-    },
+app.show();
 
-    // Состав числа 10
-    50: {
-        name: "Состав числа 10",
-        operator: "и",
-        operand: 4,
-        start: 1,
-        1: 9,
-        2: 8,
-        3: 7,
-        4: 6,
-        5: 5,
-        6: 4,
-        7: 3,
-        8: 2,
-        9: 1,
-        all: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    }
+const database = {
+
+
+    data: window.localStorage.data,
+
 }
 
 
-// функзия запуска упражнения
+
+
+// функция запуска упражнения
 class Exercise {
     constructor( thisID ){
 
@@ -609,5 +564,3 @@ class Exercise {
         }
         
 }
-
-var exercise = new Exercise(1);
