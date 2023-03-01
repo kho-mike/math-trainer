@@ -75,8 +75,11 @@ const app = {
     stop(){},
 
     getAnswere(inputAnswere){
-        if( !this.check(inputAnswere) ){
-            this.addMessage( 'wrong', 'Ой! Ошибочка' );
+        if( this.check(inputAnswere) ){
+            this.addMessage( 'right', 'Молодец! Ответ верный!' );
+        } else {
+            this.addMessage( 'wrong', 'Попробуй еще разок...' );
+
         }
 
         this.exercise.allAnsweres.push( {input: inputAnswere, current: this.exercise.temp.currentResult,} );
