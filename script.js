@@ -1,5 +1,40 @@
+const DB = window.localStorage;
+
+const user = {
+    register(){
+        return id;
+    },
+
+    signin(){
+        let login = document.getElementById('login').value;
+        let pass = document.getElementById('pass').value;
+
+        if(DB[`user-${login}`]){
+            let user = JSON.parse(DB[`user-${login}`]);
+            if(user.pass === pass){
+                DB.currentUser = login;
+                app.currentUser = user;
+                app.addMessage( 'right', 'Вы успешно авторизованы!' );
+            } else {
+                app.addMessage( 'wrong', 'Пароль введен неверно!' );
+            }
+        } else {
+            app.addMessage( 'wrong', `Пользователя с логином ${login} не существует!` );
+        }
+
+        app.show();
+        //
+    },
+}
+
+
+
+
+
 const app = {
     // приложение по проверке результата
+
+    DBusers: window.localStorage.app.users,
 
     exercises: {
         multiplication: [2, 3, 4, 5, 6, 7, 8, 9],
@@ -89,8 +124,17 @@ const app = {
     },
 
     show( currentStage = this.exercise.temp.currentStage ){
+
         let app = document.getElementById('app');
         switch (currentStage) {
+
+            case "signin":
+                app.innerHTML = `
+                
+                `;
+
+
+
             case "chooseOperation":
                 app.innerHTML = `
                 <div class="app-wrapper">
@@ -221,6 +265,8 @@ const app = {
 
     save(){},
 
+    currentUser: null,
+
     exercise: {
         timeStart: null,
         timeStop: null,
@@ -249,7 +295,11 @@ const app = {
 
 }
 
-app.show();
+if(DB.currentUser && DB.currentUser!==null){
+    app.currentUser = JSON.parse(DB[`user-${DB.currentUser}`]);
+};
+
+// app.show();
 
 const database = {
 
