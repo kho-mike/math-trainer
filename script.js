@@ -1,6 +1,35 @@
 const DB = window.localStorage;
 
 const user = {
+    show(){
+        if(DB.currentUser !== null){
+            document.getElementById('header-user-menu').innerHTML = `
+                //
+                <div class="user-name"><p>
+                    ${DB.currentUser}
+                </p></div>
+                <div class="user-controle">
+                    <div class="btn" onclick="user.signout(); console.log('111');">
+                        Exit
+                    </div>
+                </div>
+            `;
+        } else {
+            document.getElementById('header-user-menu').innerHTML = `
+                //
+                <div class="user-name"><p>
+                    ${JSON.parse(DB.currentUser)}
+                </p></div>
+                <div class="user-controle">
+                    <div class="btn" onclick="">
+                        Enter
+                    </div>
+                </div>
+            `;
+        }
+
+    },
+
     register(){
         return id;
     },
@@ -25,7 +54,13 @@ const user = {
         app.show();
         //
     },
+
+    signout(){
+        //
+        DB.currentUser = null;
+    },
 }
+
 
 
 
@@ -105,10 +140,6 @@ const app = {
         this.show();
     },
 
-    start(){},
-
-    stop(){},
-
     getAnswere(inputAnswere){
         if( this.check(inputAnswere) ){
             this.addMessage( 'right', 'Молодец! Ответ верный!' );
@@ -130,6 +161,24 @@ const app = {
 
             case "signin":
                 app.innerHTML = `
+                <div class="app-wrapper">
+                    <div class="signin-form" id="">
+                        <div class="signin-form-header">
+                            <p>Авторизация</p>
+                        </div>
+                        <div class="signin-form-login">
+                            <label for="login">Логин</label>
+                            <input type="text" id="login">
+                        </div>
+                        <div class="signin-form-pass">
+                            <label for="pass">Пароль</label>
+                            <input type="password" id="pass">
+                        </div>
+                        <div class="signin-form-control">
+                            <button type="submit" onclick="user.signin();">Войти</button>
+                        </div>
+                    </div>
+                </div>
                 
                 `;
 
@@ -265,8 +314,6 @@ const app = {
 
     save(){},
 
-    currentUser: null,
-
     exercise: {
         timeStart: null,
         timeStop: null,
@@ -298,6 +345,8 @@ const app = {
 if(DB.currentUser && DB.currentUser!==null){
     app.currentUser = JSON.parse(DB[`user-${DB.currentUser}`]);
 };
+
+user.show();
 
 // app.show();
 
